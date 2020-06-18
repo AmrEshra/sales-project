@@ -7,11 +7,13 @@
 		<th>Met Quota?</th>
 	</thead>
 	<tbody>
-		<tr *ngFor="let person of salesPersonList">
+		<tr *ngFor="let person of salesPersonList" 
+			[ngClass]="{'highlightGreen': person.salesVolume >= 5000,
+						'highlightYello': person.salesVolume < 5000}">
 			<td>{{person.firstName}}</td>
 			<td>{{person.lastName}}</td>
 			<td>{{person.email}}</td>
-			<td>{{person.salesVolume}}</td>
+			<td>{{person.salesVolume | currency:' SAR '}}</td>
 			<td>
 				<div *ngIf="person.salesVolume >= 5000; else myElseBlock">yes</div>
 				<ng-template #myElseBlock>No</ng-template>
