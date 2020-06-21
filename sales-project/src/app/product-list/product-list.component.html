@@ -1,1 +1,5 @@
 <p>Product list !</p>
+
+<p *ngFor="let product of products">
+    {{product.sku}} : {{product.name}} , {{product.unitPrice | currency:' SAR '}}
+</p>
