@@ -1,21 +1,32 @@
-<table class="table table-hover">
-	<thead class="thead-dark">
-        <th> </th>
-		<th>SKU</th>
-		<th>Name</th>
-		<th>Unit Price</th>
-		<th>Unit Stock</th>
-	</thead>
-	<tbody>
-		<tr *ngFor="let product of products">
-            <td>
-                <img src="{{product.imageUrl}}" />
-            </td>
-			<td>{{product.sku}}</td>
-			<td>{{product.name}}</td>
-            <td>{{product.unitPrice | currency:' SAR '}}</td>
-            <td>{{product.unitsInStock}}</td>
-		</tr>
-	</tbody>
-
+<table class="section-content card-rounded" border="0" cellpadding="0" cellspacing="3" width="100%">
+    <tr>
+        <td>
+            <p-table #tt [value]="products" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="table_th" style="width: 20%; word-break: break-all;">SKU
+                            <p-sortIcon [pSortableColumn]="'sku'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon><br>
+                        </th>
+                        <th class="table_th" style="width: 20%; word-break: break-all;">Name
+                            <p-sortIcon [pSortableColumn]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon><br>
+                        </th>
+                        <th class="table_th" style="width: 20%; word-break: break-all;">Price
+                            <p-sortIcon [pSortableColumn]="'unitPrice'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon><br>
+                        </th>
+                        <th class="table_th" style="width: 20%; word-break: break-all;">Unit Stock                            
+                            <p-sortIcon [pSortableColumn]="'unitsInStock'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon><br>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td class="table_td" style="word-break: break-all;">{{product.sku}}</td>
+                        <td class="table_td" style="word-break: break-all;">{{product.name}}</td>
+                        <td class="table_td" style="word-break: break-all;">{{product.unitPrice | currency:' SAR '}}</td>
+                        <td class="table_td" style="word-break: break-all;">{{product.unitsInStock}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </td>
+    </tr>
 </table>
