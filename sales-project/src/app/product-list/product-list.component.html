@@ -9,9 +9,12 @@
                         </th>
                         <th class="table_th" style="width: 20%; word-break: break-all;">Name
                             <p-sortIcon [pSortableColumn]="'name'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon><br>
+                            <input style="width: 80%;"  pInputText type="text" maxlength="50" (input)="tt.filter($event.target.value, 'name', 'contains')">
+
                         </th>
                         <th class="table_th" style="width: 20%; word-break: break-all;">Price
                             <p-sortIcon [pSortableColumn]="'unitPrice'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon><br>
+                            <input style="width: 80%;"  pInputText type="number" maxlength="10" (input)="tt.filter($event.target.value, 'unitPrice', 'contains')">
                         </th>
                         <th class="table_th" style="width: 20%; word-break: break-all;">Unit Stock                            
                             <p-sortIcon [pSortableColumn]="'unitsInStock'" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon><br>
