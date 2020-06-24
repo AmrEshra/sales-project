@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { SalesPersonListComponent } from './sales-person-list/sales-person-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductCategoryListComponent } from './product-category-list/product-category-list.component';
+import { SearchComponent } from './search/search.component';
 
 /* Any New Services should be imported here */
 import {ProductService} from './services/product.service';
@@ -21,12 +22,14 @@ import {ProductCategoryService} from './services/product-category.service';
 import {TranslateService} from '@ngx-translate/core';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     SalesPersonListComponent,
     ProductListComponent,
-    ProductCategoryListComponent
+    ProductCategoryListComponent,
+    SearchComponent
     ],
   imports: [
     BrowserModule,
