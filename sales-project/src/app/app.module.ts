@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'zone.js/dist/zone';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -23,9 +24,10 @@ import { TranslateService } from '@ngx-translate/core';
     AppComponent,
     SalesPersonListComponent,
     ProductListComponent
-  ],
+    ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     TranslateModule.forRoot({
