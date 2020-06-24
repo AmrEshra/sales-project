@@ -13,17 +13,20 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { SalesPersonListComponent } from './sales-person-list/sales-person-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { ProductCategoryListComponent } from './product-category-list/product-category-list.component';
 
 /* Any New Services should be imported here */
 import {ProductService} from './services/product.service';
-import { TranslateService } from '@ngx-translate/core';
+import {ProductCategoryService} from './services/product-category.service';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SalesPersonListComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductCategoryListComponent
     ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { TranslateService } from '@ngx-translate/core';
   ],
   providers: [
     TranslateService,
-    ProductService
+    ProductService,
+    ProductCategoryService
   ],
   bootstrap: [AppComponent]
 })
