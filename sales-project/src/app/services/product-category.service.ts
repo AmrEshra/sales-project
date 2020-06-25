@@ -13,27 +13,11 @@ export class ProductCategoryService {
   constructor(private httpClient: HttpClient) { }
 
   getProductCategoriesList() {
-    return this.httpClient.get<ProductCategory[]>(this.baseurl)
-      .pipe(
-        map(
-          (category) => {
-            console.log(category);
-            return category;
-          }
-        )
-      );
+    return this.httpClient.get<ProductCategory[]>(this.baseurl);
   }
 
   getProductCategoryById(id: number) {
     const url = `http://localhost:8005/ECommerce/productCategory-api/ProductCategories/${id}`;
-    return this.httpClient.get<ProductCategory[]>(url)
-      .pipe(
-        map(
-          (category) => {
-            console.log(category);
-            return category;
-          }
-        )
-      );
+    return this.httpClient.get<ProductCategory[]>(url);
   }
 }

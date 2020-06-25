@@ -37,4 +37,9 @@ export class ProductService {
         )
       );
   }
+
+    getProductById(id: number) {
+    const url = `http://localhost:8005/ECommerce/product-api/Products/${id}`;
+    return this.httpClient.get<Product>(url);
+  }
 }

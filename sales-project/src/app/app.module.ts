@@ -20,6 +20,7 @@ import { SearchComponent } from './search/search.component';
 import {ProductService} from './services/product.service';
 import {ProductCategoryService} from './services/product-category.service';
 import {TranslateService} from '@ngx-translate/core';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 
@@ -29,7 +30,8 @@ import {TranslateService} from '@ngx-translate/core';
     SalesPersonListComponent,
     ProductListComponent,
     ProductCategoryListComponent,
-    SearchComponent
+    SearchComponent,
+    ProductDetailsComponent
     ],
   imports: [
     BrowserModule,
