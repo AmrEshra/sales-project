@@ -12,8 +12,8 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProductsList(categoryId: number) {
-    const url = `http://localhost:8005/ECommerce/product-api/Products/category/${categoryId}`;
+  getProductsList(categoryId: number, _page: number, _size: number) {
+    const url = this.baseurl + `/category?categoryId=${categoryId}&page=${_page}&size=${_size}`;
     return this.httpClient.get<Product[]>(url)
       .pipe(
         map(
@@ -26,7 +26,7 @@ export class ProductService {
   }
 
   getProductsListByName(name: string) {
-    const url = `http://localhost:8005/ECommerce/product-api/Products/name/${name}`;
+    const url = this.baseurl + `/name/${name}`;
     return this.httpClient.get<Product[]>(url)
       .pipe(
         map(
@@ -39,7 +39,7 @@ export class ProductService {
   }
 
     getProductById(id: number) {
-    const url = `http://localhost:8005/ECommerce/product-api/Products/${id}`;
+    const url = this.baseurl + `/${id}`;
     return this.httpClient.get<Product>(url);
   }
 }

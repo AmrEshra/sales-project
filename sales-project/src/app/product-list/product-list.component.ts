@@ -15,16 +15,28 @@ export class ProductListComponent implements OnInit {
   products: Product[];
   category: ProductCategory;
 
-  categoryId: number;
+  categoryId: number = 1;
+  previousCategoryId: number = 1;
   categoryName: string;
   searchMode: boolean;
 
-  constructor(private productService: ProductService, private productCategoryService: ProductCategoryService, private route: ActivatedRoute) { }
+  pageNumber: number = 1;
+  pageSize: number = 5;
+  totalElements: number = 0;
+
+  constructor(private productService: ProductService, private productCategoryService: ProductCategoryService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.handelProductList();
     });
+  }
+
+  updatePageSize(size: number){
+    this.pageSize = size;
+    this.pageNumber = 1;
+    this.listProductsByCategory();
   }
 
   handelProductList() {
@@ -51,16 +63,35 @@ export class ProductListComponent implements OnInit {
         }
       );
     }
-    this.productService.getProductsList(this.categoryId).subscribe(
+
+        //
+    // Check if we have a different category than previous
+    // Note: Angular will reuse a component if it is currently being viewed
+    //
+
+    // if we have a different category id than previous
+    // then set thePageNumber back to 1
+    if (this.previousCategoryId != this.categoryId) {
+      this.pageNumber = 1;
+    }
+
+    this.previousCategoryId = this.categoryId;
+
+    console.log(`currentCategoryId=${this.categoryId}, thePageNumber=${this.pageNumber}`);
+
+    this.productService.getProductsList(this.categoryId, this.pageNumber - 1, this.pageSize).subscribe(
       (data: any) => {
         this.products = data.content;
+        this.pageNumber = data.number + 1;
+        this.pageSize = data.size;
+        this.totalElements = data.totalElements;
       }
     );
   }
 
   listProductsByName(keyword: string) {
 
-    if(keyword === ''){
+    if ( keyword === '' ){
       keyword = null;
     }
     this.productService.getProductsListByName(keyword).subscribe(

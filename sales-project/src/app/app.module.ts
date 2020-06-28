@@ -8,6 +8,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 /* Any New Component should be imported here */
 import { AppComponent } from './app.component';
@@ -48,6 +49,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     FormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgbModule
   ],
   providers: [
     TranslateService,
