@@ -12,8 +12,8 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProductsList(categoryId: number, _page: number, _size: number) {
-    const url = this.baseurl + `/category?categoryId=${categoryId}&page=${_page}&size=${_size}`;
+  getProductsList(categoryId: number, PAGE_: number, SIZE_: number) {
+    const url = this.baseurl + `/category?categoryId=${categoryId}&page=${PAGE_}&size=${SIZE_}`;
     return this.httpClient.get<Product[]>(url)
       .pipe(
         map(
@@ -25,8 +25,8 @@ export class ProductService {
       );
   }
 
-  getProductsListByName(name: string) {
-    const url = this.baseurl + `/name/${name}`;
+  getProductsListByName(name: string, PAGE_: number, SIZE_: number) {
+    const url = this.baseurl + `/name?name=${name}&page=${PAGE_}&size=${SIZE_}`;
     return this.httpClient.get<Product[]>(url)
       .pipe(
         map(

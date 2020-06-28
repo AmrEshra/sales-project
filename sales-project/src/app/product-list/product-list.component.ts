@@ -94,9 +94,12 @@ export class ProductListComponent implements OnInit {
     if ( keyword === '' ){
       keyword = null;
     }
-    this.productService.getProductsListByName(keyword).subscribe(
-      data => {
-        this.products = data;
+    this.productService.getProductsListByName(keyword, this.pageNumber - 1, this.pageSize).subscribe(
+      (data: any) => {
+        this.products = data.content;
+        this.pageNumber = data.number + 1;
+        this.pageSize = data.size;
+        this.totalElements = data.totalElements;
       }
     );
   }

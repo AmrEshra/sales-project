@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-md-9" style="padding-left: 30%">
                                     <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize" [maxSize]="5" [collectionSize]="totalElements"
-                                        (pageChange)="listProductsByCategory()" [boundaryLinks]="true">
+                                        (pageChange)="handelProductList()" [boundaryLinks]="true">
                                     </ngb-pagination>
                                 </div>
                             </div>
