@@ -26,16 +26,16 @@ export class CartService {
     const tempCart = new Cart(product.id, 1);
     this.computeCartTotals(product);
 
-    /*return this.httpClient.post<Cart>(this.baseurl, tempCart).pipe(
+    return this.httpClient.post<Cart>(this.baseurl, tempCart).pipe(
       map(
         (cart) => {
           console.log('from post method');
           console.log(cart);
-          this.computeCartTotals(product);
+         // this.computeCartTotals(product);
           return cart;
         }
       )
-    );*/
+    );
   }
 
   computeCartTotals(product: Product) {

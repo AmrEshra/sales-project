@@ -1,6 +1,6 @@
 export class CartDetails {
 
-	public id: number;
+	public productId: number;
 	public sku: string;
 	public name: string;
 	public description: string;
