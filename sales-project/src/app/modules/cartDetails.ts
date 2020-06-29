@@ -1,4 +1,4 @@
-export class Product {
+export class CartDetails {
 
 	public id: number;
 	public sku: string;
@@ -6,11 +6,8 @@ export class Product {
 	public description: string;
 	public unitPrice: number;
 	public imageUrl: string;
-	public active: boolean;
-	public unitsInStock: number;
-	public createDate: Date;
-	public updateDate: Date;
-	public categoryId: number;
+	public totalPrice: number;
+	public itemCount: number;
 
 	constructor() { }
 }

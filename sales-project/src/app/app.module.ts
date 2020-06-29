@@ -23,6 +23,7 @@ import {ProductCategoryService} from './services/product-category.service';
 import {TranslateService} from '@ngx-translate/core';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartStatusComponent } from './cart-status/cart-status.component';
+import { CartDetailsComponent } from './cart-details/cart-details.component';
 
 
 
@@ -34,7 +35,8 @@ import { CartStatusComponent } from './cart-status/cart-status.component';
     ProductCategoryListComponent,
     SearchComponent,
     ProductDetailsComponent,
-    CartStatusComponent
+    CartStatusComponent,
+    CartDetailsComponent
     ],
   imports: [
     BrowserModule,
