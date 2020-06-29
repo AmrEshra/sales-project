@@ -24,7 +24,7 @@ export class CartService {
 
   addToCart(product: Product) {
     const tempCart = new Cart(product.id, 1);
-    this.computeCartTotals(product);
+    this.computeCartTotals(product.unitPrice, 1);
 
     return this.httpClient.post<Cart>(this.baseurl, tempCart).pipe(
       map(
@@ -38,12 +38,10 @@ export class CartService {
     );
   }
 
-  computeCartTotals(product: Product) {
-
+  computeCartTotals(price: number, quantity: number) {
     // publish the new values ... all subscribers will receive the new data
-    this.totalPrice.next(product.unitPrice);
-    this.totalCount.next(1);
-
+    this.totalPrice.next(price);
+    this.totalCount.next(quantity);
   }
 
   deleteFromCart(id: number) {

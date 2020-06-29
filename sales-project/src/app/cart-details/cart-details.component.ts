@@ -36,7 +36,7 @@ export class CartDetailsComponent implements OnInit {
     console.log(cartItem.name);
     console.log(cartItem.itemCount);
 
-    const oldQuantity = cartItem.itemCount
+    const oldQuantity = cartItem.itemCount;
 
     cartItem.totalPrice = newQuantity * cartItem.unitPrice;
     cartItem.itemCount = newQuantity;
@@ -44,6 +44,7 @@ export class CartDetailsComponent implements OnInit {
     this.itemCount = +this.itemCount - oldQuantity + +newQuantity;
     this.totalPrice = +this.totalPrice - (cartItem.unitPrice * oldQuantity) + (cartItem.unitPrice * +newQuantity);
 
+    this.cartService.computeCartTotals(cartItem.unitPrice , (- oldQuantity + +newQuantity));
     // TODO
     // post request
     // update cart status
