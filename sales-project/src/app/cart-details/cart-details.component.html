@@ -23,7 +23,9 @@
                     </td>
                     <td>
                         <div class="items">
-                            <label>Quantity:</label> {{ cartItem.itemCount }}
+                            <label>Quantity:</label> 
+                            <input type="number" #quantity value="{{ cartItem.itemCount }}" min="1"
+                                (change)="updateCart(cartItem, quantity.value)"/>
                         </div>
 
                         <p class="mt-2">Subtotal: {{ cartItem.totalPrice | currency: ' SAR ' }}</p>

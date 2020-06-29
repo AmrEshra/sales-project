@@ -19,7 +19,6 @@ export class CartDetailsComponent implements OnInit {
   }
 
   getCartDetails() {
-
     this.cartService.getCartDetails().subscribe(
       data => {
         this.cartDetails = data;
@@ -32,4 +31,21 @@ export class CartDetailsComponent implements OnInit {
     );
   }
 
+  updateCart(cartItem: CartDetails, newQuantity: number){
+    console.log(newQuantity);
+    console.log(cartItem.name);
+    console.log(cartItem.itemCount);
+
+    const oldQuantity = cartItem.itemCount
+
+    cartItem.totalPrice = newQuantity * cartItem.unitPrice;
+    cartItem.itemCount = newQuantity;
+
+    this.itemCount = +this.itemCount - oldQuantity + +newQuantity;
+    this.totalPrice = +this.totalPrice - (cartItem.unitPrice * oldQuantity) + (cartItem.unitPrice * +newQuantity);
+
+    // TODO
+    // post request
+    // update cart status
+  }
 }
