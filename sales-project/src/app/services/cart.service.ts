@@ -55,4 +55,8 @@ export class CartService {
   deleteFromCart(id: number) {
     return this.httpClient.delete(this.baseurl + '/' + id);
   }
+
+  purchase(){
+    return this.httpClient.delete(this.baseurl + '/deleteAll');
+  }
 }
