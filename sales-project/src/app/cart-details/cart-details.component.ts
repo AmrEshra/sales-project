@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { CartDetails } from '../modules/cartDetails';
+import { Cart } from '../modules/cart';
 
 @Component({
   selector: 'app-cart-details',
@@ -19,6 +20,8 @@ export class CartDetailsComponent implements OnInit {
   }
 
   getCartDetails() {
+    this.totalPrice = 0;
+    this.itemCount = 0;
     this.cartService.getCartDetails().subscribe(
       data => {
         this.cartDetails = data;
@@ -31,11 +34,21 @@ export class CartDetailsComponent implements OnInit {
     );
   }
 
-  updateCart(cartItem: CartDetails, newQuantity: number){
+  removeFromCart(cartItem: CartDetails) {
+
+    this.cartService.deleteFromCart(cartItem.productId)
+      .subscribe(
+        () => {
+          this.getCartDetails();
+           this.cartService.computeCartTotals(-1 * cartItem.totalPrice, -1 * cartItem.itemCount);
+        }
+      );
+  }
+
+  updateCart(cartItem: CartDetails, newQuantity: number) {
     console.log(newQuantity);
     console.log(cartItem.name);
     console.log(cartItem.itemCount);
-
     const oldQuantity = cartItem.itemCount;
 
     cartItem.totalPrice = newQuantity * cartItem.unitPrice;
@@ -44,9 +57,13 @@ export class CartDetailsComponent implements OnInit {
     this.itemCount = +this.itemCount - oldQuantity + +newQuantity;
     this.totalPrice = +this.totalPrice - (cartItem.unitPrice * oldQuantity) + (cartItem.unitPrice * +newQuantity);
 
-    this.cartService.computeCartTotals(cartItem.unitPrice , (- oldQuantity + +newQuantity));
-    // TODO
-    // post request
-    // update cart status
+    this.cartService.computeCartTotals((- (cartItem.unitPrice * oldQuantity) + (cartItem.unitPrice * +newQuantity)), (- oldQuantity + +newQuantity));
+
+    this.cartService.updateCart(cartItem)
+      .subscribe(
+        (product) => {
+          console.log(product);
+        }
+      );
   }
 }

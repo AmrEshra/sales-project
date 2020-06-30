@@ -29,6 +29,8 @@
                         </div>
 
                         <p class="mt-2">Subtotal: {{ cartItem.totalPrice | currency: ' SAR ' }}</p>
+
+                        <button class="btn btn-primary btn-sm" (click)="removeFromCart(cartItem)">remove</button>
                     </td>
                 </tr>
 

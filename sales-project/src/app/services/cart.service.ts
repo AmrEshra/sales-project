@@ -24,14 +24,22 @@ export class CartService {
 
   addToCart(product: Product) {
     const tempCart = new Cart(product.id, 1);
-    this.computeCartTotals(product.unitPrice, 1);
 
     return this.httpClient.post<Cart>(this.baseurl, tempCart).pipe(
       map(
         (cart) => {
-          console.log('from post method');
-          console.log(cart);
-         // this.computeCartTotals(product);
+          this.computeCartTotals(product.unitPrice, 1);
+          return cart;
+        }
+      )
+    );
+  }
+
+  updateCart(cartDetails: CartDetails){
+  const url = this.baseurl + `/updateCart?productId=${cartDetails.productId}&newItemCount=${cartDetails.itemCount}`;
+  return this.httpClient.post<Cart>(url, null).pipe(
+      map(
+        (cart) => {
           return cart;
         }
       )
@@ -45,6 +53,6 @@ export class CartService {
   }
 
   deleteFromCart(id: number) {
-    return this.httpClient.delete(this.baseurl + id);
+    return this.httpClient.delete(this.baseurl + '/' + id);
   }
 }
