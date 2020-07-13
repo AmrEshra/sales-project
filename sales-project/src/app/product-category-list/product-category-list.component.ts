@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductCategory } from '../modules/productCategory';
 import { ProductCategoryService } from '../services/product-category.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-product-category-list',
@@ -17,6 +18,7 @@ export class ProductCategoryListComponent implements OnInit {
   }
 
   listCategories() {
+
     this.productCategoryService.getProductCategoriesList().subscribe(
       (data: any) => {
         this.categories = data;

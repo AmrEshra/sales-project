@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'zone.js/dist/zone';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -25,8 +25,13 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartStatusComponent } from './cart-status/cart-status.component';
 import { CartDetailsComponent } from './cart-details/cart-details.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { HeaderInterceptor } from './interceptors/header.interceptor';
+import { AuthenticationService } from './services/authentication.service';
+import { ResponseInterceptor } from './interceptors/response.interceptor';
 
-
+export function generateToken(authenticationService: AuthenticationService) {
+  return () => authenticationService.generateToken();
+}
 
 @NgModule({
   declarations: [
@@ -61,7 +66,11 @@ import { CheckoutComponent } from './checkout/checkout.component';
   providers: [
     TranslateService,
     ProductService,
-    ProductCategoryService
+    ProductCategoryService,
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true},
+  //  { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},
+    { provide: APP_INITIALIZER, useFactory: generateToken, deps: [AuthenticationService], multi: true },
+
   ],
   bootstrap: [AppComponent]
 })
