@@ -9,11 +9,12 @@ import {
 import { Observable, throwError, EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
+import { JwtTokenService } from '../services/jwt-token.service';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService, private jwtTokenService: JwtTokenService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request)
@@ -48,6 +49,7 @@ export class ResponseInterceptor implements HttpInterceptor {
     } else {  // Other Errors
     //  this.loggerService.error(err);
       console.log(err);
+      this.jwtTokenService.destroyToken();
       return throwError(err);
 
     /*  let errorMessage: string;

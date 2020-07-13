@@ -68,7 +68,7 @@ export function generateToken(authenticationService: AuthenticationService) {
     ProductService,
     ProductCategoryService,
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true},
-  //  { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},
     { provide: APP_INITIALIZER, useFactory: generateToken, deps: [AuthenticationService], multi: true },
 
   ],
